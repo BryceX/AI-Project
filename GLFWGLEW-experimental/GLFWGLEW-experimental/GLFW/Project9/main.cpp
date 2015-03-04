@@ -15,6 +15,14 @@
 #include "Text.h"
 #include "Animator.h"
 #include <fstream>
+#ifndef _GRAPH_H_
+#define _GRAPH_H_
+#include "Graph.h"
+
+
+
+#endif // !_GRAPH_H_
+
 
 int astConstant = 40;
 float deltaTime = 0;
@@ -71,7 +79,7 @@ int main()
 	Animator test("mario.jpg"); 
 
 	
-	
+	Graph myGraph;
 
 	//set up the mapping of the screen to pixel co-ordinates. Try changing these values to see what happens.
 	//loop until the user closes the window
@@ -79,7 +87,7 @@ int main()
 	
 
 	Text myText;
-
+	myGraph.CreateGraph(1, 1, 10, 10);
 	while (!glfwWindowShouldClose(myGlobals.window))
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -105,7 +113,7 @@ int main()
 		
 		
 
-			
+		
 		
 
 		for (int i = 0; i < 10; i++)
