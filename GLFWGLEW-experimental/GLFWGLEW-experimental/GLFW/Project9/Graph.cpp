@@ -129,8 +129,8 @@ bool Graph::SearchBFS(GraphNode* a_pStart, GraphNode* a_pEnd)//Add to SearchDFS 
 
 Graph Graph::CreateGraph(float xSpace, float ySpace, int xNum, int yNum)
 {
+	
 	Graph tempGraph;
-	Quad tile("square.png");
 
 	// creating the graph
 	for (int i = 0, id = 0; i < xNum; i++)
@@ -142,13 +142,13 @@ Graph Graph::CreateGraph(float xSpace, float ySpace, int xNum, int yNum)
 			temp->y = j;
 			temp->id = id;
 
-			// todo
+			//todo
 			//temp2->x = i + xSpace;
 			//temp2->y = j + ySpace;
 			id++;
 
 			tempGraph.AddNode(temp);
-			tile.Draw((temp->x*10), (temp->y*10), xSpace/2, ySpace/2);
+			
 			//// goes right
 			//if (yNum*2>id>0 && id != xNum)
 			//{
@@ -250,6 +250,29 @@ Graph Graph::CreateGraph(float xSpace, float ySpace, int xNum, int yNum)
 	return tempGraph;
 }
 
+void Graph::DrawGraph(int xMax, int yMax)
+{
+	int yCount = 0;
+	float tempX = m_aNodes[0]->x;
+	for (int i = 0; i < m_aNodes.size(); i++)
+	{
+
+		tile.Draw(m_aNodes[i]->x, m_aNodes[i]->y, spacing/2, spacing/2);
+		m_aNodes[i]->x += spacing;
+		
+		if (yCount < yMax)
+		{
+			if (i > xMax)
+			{
+				m_aNodes[0]->x = tempX;
+				yCount += 1;
+				m_aNodes[i]->y += spacing;
+			}
+		}
+		
+	}
+	
+}
 
 
 

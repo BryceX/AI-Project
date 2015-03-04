@@ -86,6 +86,7 @@ int main()
 
 	Text myText;
 	myGraph.CreateGraph(1, 1, 10, 10);
+	myGraph.DrawGraph(10, 10);
 	while (!glfwWindowShouldClose(myGlobals.window))
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -103,7 +104,7 @@ int main()
 		//myShip.Draw();
 
 
-		//myText.Draw(250.f, 300.f, std::string("Ayy lmao"));
+		//myText.Draw(0.f, 0.f, std::string("Ayy lmao"));
 
 
 		//	animatedSprite.Draw();
@@ -116,6 +117,8 @@ int main()
 
 		}*/
 		
+
+
 
 		//for (int i = 0; i < 10; i++)
 		{
