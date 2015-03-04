@@ -18,9 +18,7 @@
 #ifndef _GRAPH_H_
 #define _GRAPH_H_
 #include "Graph.h"
-
-
-
+#include "Quad.h"
 #endif // !_GRAPH_H_
 
 
@@ -76,8 +74,8 @@ int main()
 	
 	
 	Asteroids myAsteroids[10];
-	Animator test("mario.jpg"); 
-
+	Animator test("mario.png"); 
+	Quad square("square.png");
 	
 	Graph myGraph;
 
@@ -93,37 +91,40 @@ int main()
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		GetDeltaTime();
-	
+
 
 		currentTime = glfwGetTime();
 		deltaTime = currentTime - lastFrame;
 		lastFrame = currentTime;
 
-		
-		test.Draw(300, 300, 200, 200, 12, deltaTime);
+
+		//test.Draw(300, 300, 200, 200, 12, deltaTime);
 		//myShip.Move();
-		myShip.Draw();
-		
+		//myShip.Draw();
 
-		myText.Draw(250.f, 300.f, std::string("Ayy lmao"));
-		
-		
-	//	animatedSprite.Draw();
+
+		//myText.Draw(250.f, 300.f, std::string("Ayy lmao"));
+
+
+		//	animatedSprite.Draw();
 		//animatedSprite.Move();
-		
-		
 
-		
-		
-
-		for (int i = 0; i < 10; i++)
+		/*for (int i = 0; i < 10; i++)
 		{
-			myAsteroids[i].Draw();
+		
+		square.Draw(100+(20*i), 50, 20, 20);
+
+		}*/
+		
+
+		//for (int i = 0; i < 10; i++)
+		{
+		//	myAsteroids[i].Draw();
 		}
 
-		for (int i = 0; i < 50; i++)
+		//for (int i = 0; i < 50; i++)
 		{
-			myStars[i].Draw();
+		//	myStars[i].Draw();
 		}
 
 
