@@ -11,13 +11,14 @@ class Graph
 {
 
 	typedef std::vector<GraphNode*> NodeList;
-	Quad tile;
+	
 	
 public:
 	//Creates an empty graph
 	Graph();
 
 	~Graph();
+	
 	//Creates a graph with the given number of nodes
 	//the contents and links of the nodes are randomised
 	Graph(unsigned int a_uiNodeCount);

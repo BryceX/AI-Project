@@ -254,19 +254,20 @@ void Graph::DrawGraph(int xMax, int yMax)
 {
 	int yCount = 0;
 	float tempX = m_aNodes[0]->x;
+	//Quad tile("square.png");
 	for (int i = 0; i < m_aNodes.size(); i++)
 	{
 
-		tile.Draw(m_aNodes[i]->x, m_aNodes[i]->y, spacing/2, spacing/2);
+ //tile.Draw(m_aNodes[i]->x, m_aNodes[i]->y, spacing/2, spacing/2);
 		m_aNodes[i]->x += spacing;
 		
 		if (yCount < yMax)
 		{
 			if (i > xMax)
 			{
-				m_aNodes[0]->x = tempX;
+				/*m_aNodes[i]->x = tempX;
 				yCount += 1;
-				m_aNodes[i]->y += spacing;
+				m_aNodes[i]->y += spacing;*/
 			}
 		}
 		

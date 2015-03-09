@@ -6,6 +6,8 @@
 #include "Globals.h"
 class Quad
 {
+
+
 public:
 	void Move();
 	void Draw(float x, float y, float width, float height);
@@ -17,4 +19,5 @@ public:
 	Quad();
 	Quad(const char * texturePath);
 	~Quad();
+
 };

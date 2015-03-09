@@ -4,6 +4,8 @@
 
 
 
+
+
 Quad::Quad(const char * texturePath)
 {
 	Globals& myGlobals = Globals::instance();
