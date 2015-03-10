@@ -31,11 +31,11 @@ public:
 	bool CheckIfNeighbor(GraphNode* nodeB);
 	bool Visited = false;
 	void IsNeighbor();
-	void RemoveNode(GraphNode* node);
+	
 
 	void SetNode(int id, float x, float y);
-	float x;
-	float y;
+	float x = 0;
+	float y = 0;
 	int	id;
 	typedef std::vector<Edge> EdgeList;
 	EdgeList  m_aEdges;

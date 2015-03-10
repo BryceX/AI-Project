@@ -79,30 +79,32 @@ int main()
 	
 	Graph myGraph;
 
-	//set up the mapping of the screen to pixel co-ordinates. Try changing these values to see what happens.
-	//loop until the user closes the window
+	
 
 	
 
 	Text myText;
-	myGraph.CreateGraph(1, 1, 10, 10);
-	myGraph.DrawGraph(10, 10);
+	myGraph.SetGraphData(180, 180, 15, 15);
+	myGraph.CreateGraph();
+	
+	myGraph.SearchDFS(myGraph.m_aNodes[1], myGraph.m_aNodes[1]);
 	while (!glfwWindowShouldClose(myGlobals.window))
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		GetDeltaTime();
 
-
+		
 		currentTime = glfwGetTime();
 		deltaTime = currentTime - lastFrame;
 		lastFrame = currentTime;
-
-
+		//square.Draw(300,300, 50,50);
+		myGraph.DrawGraph();
+		
 		//test.Draw(300, 300, 200, 200, 12, deltaTime);
 		//myShip.Move();
 		//myShip.Draw();
-
+		
 
 		//myText.Draw(0.f, 0.f, std::string("Ayy lmao"));
 

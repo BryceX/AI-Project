@@ -126,47 +126,47 @@ bool Graph::SearchBFS(GraphNode* a_pStart, GraphNode* a_pEnd)//Add to SearchDFS 
 	return false;
 }
 
+void Graph::SetGraphData(int xSpace, int ySpace, int xCount, int yCount)
+{
+	this->xSpace = xSpace;
+	this->ySpace = ySpace;
+	this->xCount = xCount;
+	this->yCount = yCount;
 
-Graph Graph::CreateGraph(float xSpace, float ySpace, int xNum, int yNum)
+}
+
+
+
+Graph Graph::CreateGraph()
 {
 	
 	Graph tempGraph;
-
+	
 	// creating the graph
-	for (int i = 0, id = 0; i < xNum; i++)
+	for (int i = 0, id = 0; i < xCount; i++)
 	{
-		for (int j = 0; j < yNum; j++)
+		for (int j = 0; j < yCount; j++)
 		{
 			GraphNode * temp = new GraphNode();
 			temp->x = i;
 			temp->y = j;
 			temp->id = id;
+			
 
-			//todo
-			//temp2->x = i + xSpace;
-			//temp2->y = j + ySpace;
+			
 			id++;
 
 			tempGraph.AddNode(temp);
 			
-			//// goes right
-			//if (yNum*2>id>0 && id != xNum)
-			//{
-			//	Edge tempEdge1;
-			//	tempEdge1.m_pStart = temp;
-			//	tempEdge1.m_pEnd = temp2;
-			//	tempEdge1.m_fCost = 1;
-			//	
-			//	temp->m_aEdges.push_back(tempEdge1);
-			//}
-			//temp->PrintNeighbors();
+		
 		}
 	}
 
+
 	// adding neighbors
-	for (int k = 0, currentID = 0; k < xNum; k++)
+	for (int k = 0, currentID = 0; k < xCount; k++)
 	{
-		for (int l = 0; l < yNum; l++)
+		for (int l = 0; l < yCount; l++)
 		{
 			GraphNode * currentNode = tempGraph.m_aNodes[currentID];
 
@@ -174,24 +174,24 @@ Graph Graph::CreateGraph(float xSpace, float ySpace, int xNum, int yNum)
 			//std::cout << "Working on: " << currentNode->id << "\n";
 
 			// up
-			if (currentID + yNum < tempGraph.m_aNodes.size())
+			if (currentID + yCount < tempGraph.m_aNodes.size())
 			{
-				Edge temp(currentNode, tempGraph.m_aNodes[currentID + yNum], 1);
+				Edge temp(currentNode, tempGraph.m_aNodes[currentID + yCount], 1);
 				currentNode->m_aEdges.push_back(temp);
-				tempGraph.m_aNodes[currentID + yNum]->m_aEdges.push_back(temp);
+				tempGraph.m_aNodes[currentID + yCount]->m_aEdges.push_back(temp);
 			}
 
 			// down
-			if (currentID - yNum > 0)
+			if (currentID - yCount > 0)
 			{
-				Edge temp(currentNode, tempGraph.m_aNodes[currentID - yNum], 1);
+				Edge temp(currentNode, tempGraph.m_aNodes[currentID - yCount], 1);
 				currentNode->m_aEdges.push_back(temp);
-				tempGraph.m_aNodes[currentID - yNum]->m_aEdges.push_back(temp);
+				tempGraph.m_aNodes[currentID - yCount]->m_aEdges.push_back(temp);
 			}
 
 			//left
 			if (currentID - 1 >= 0 &&	// not below 0
-				currentID % xNum != 0)	// not a multiple of the xNum
+				currentID % xCount != 0)	// not a multiple of the xNum
 			{
 				Edge temp(currentNode, tempGraph.m_aNodes[currentID - 1], 1);
 				currentNode->m_aEdges.push_back(temp);
@@ -199,8 +199,8 @@ Graph Graph::CreateGraph(float xSpace, float ySpace, int xNum, int yNum)
 			}
 
 			//right
-			if (currentID + 1 < xNum * yNum &&
-				(currentID + 1) % xNum != 0)
+			if (currentID + 1 < xCount * yCount &&
+				(currentID + 1) % xCount != 0)
 			{
 				Edge temp(currentNode, tempGraph.m_aNodes[currentID + 1], 1);
 				currentNode->m_aEdges.push_back(temp);
@@ -209,70 +209,78 @@ Graph Graph::CreateGraph(float xSpace, float ySpace, int xNum, int yNum)
 
 
 
-			// left
-			// right
-
-			//temp->x = k;
-			//temp->y = l;
-			//temp->id = id;
-
-			//temp2->x = k + xSpace;
-			//temp2->y = l + ySpace;
-			//temp2->id = id + yNum;
-			//if (yNum*xNum>id>0)
-			//{
-			//	Edge tempEdge2;
-			//	tempEdge2.m_pStart = temp;
-			//	tempEdge2.m_pEnd = temp2;
-			//	tempEdge2.m_fCost = 1;
-			//	temp->m_aEdges.push_back(tempEdge2);
-			//}
-			//currentNode->PrintNeighbors();
-
-
-			//tempGraph.m_aNodes[currentID + yNum]->PrintNeighbors();
+			
 			currentID++;
+		
 		}
 
 
 	}
-
+	
 	// creating the graph
-	for (int i = 0, id = 0; i < xNum; i++)
+	for (int i = 0, id = 0; i < xCount; i++)
 	{
-		for (int j = 0; j < yNum; j++)
+		for (int j = 0; j < yCount; j++)
 		{
 			tempGraph.m_aNodes[id]->PrintNeighbors();
 			id++;
 		}
 	}
-
+	
 	return tempGraph;
 }
 
-void Graph::DrawGraph(int xMax, int yMax)
+void Graph::DrawGraph()
 {
-	int yCount = 0;
-	float tempX = m_aNodes[0]->x;
-	//Quad tile("square.png");
-	for (int i = 0; i < m_aNodes.size(); i++)
+	Graph tempGraph;
+	Quad tile("square.png");
+	int yRows = 0;
+	int xColumns = 0;
+	
+	for (int i = 0, id = 0; i < xCount; i++)
 	{
-
- //tile.Draw(m_aNodes[i]->x, m_aNodes[i]->y, spacing/2, spacing/2);
-		m_aNodes[i]->x += spacing;
-		
-		if (yCount < yMax)
+		for (int j = 0; j < yCount; j++)
 		{
-			if (i > xMax)
+			GraphNode * temp = new GraphNode();
+			temp->id = id;
+
+
+
+			id++;
+
+			tempGraph.AddNode(temp);
+
+
+		}
+	}
+	
+	
+	
+	for (int k = 0; k < yCount; k++)
+	{
+		for (int l = 0; l < xCount; l++)
+		{
+			
+				tile.Draw( tempGraph.m_aNodes[l]->x+xSpace, tempGraph.m_aNodes[k]->y+ySpace, spacing, spacing);
+				tempGraph.m_aNodes[l]->x += spacing;
+				xColumns += 1;
+				tempGraph.m_aNodes[k]->y += spacing;
+
+			if (xColumns > xCount)
 			{
-				/*m_aNodes[i]->x = tempX;
-				yCount += 1;
-				m_aNodes[i]->y += spacing;*/
+				yRows += 1;
+				xColumns = 0;
+				tempGraph.m_aNodes[l]->x = tempGraph.m_aNodes[0]->x;
+			
+				
 			}
+			
 		}
 		
 	}
-	
+	//std::cout << tempGraph.m_aNodes.size();
+	//std::cout << tempGraph.m_aNodes[0]->x << std::endl;
+	//std::cout << tempGraph.m_aNodes[0]->y << std::endl;
 }
 
 

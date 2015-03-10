@@ -25,9 +25,18 @@ public:
 	void AddNode(GraphNode* a_pNode);
 	void RemoveNode(GraphNode* node);
 	void ResetVisited();
-	void DrawGraph(int xMax, int yMax);
 
-	Graph CreateGraph(float xSpace, float ySpace, int xNum, int yNum);
+	void SetGraphData(int xSpace, int ySpace, int xCount, int yCount);
+	Graph CreateGraph();
+	void DrawGraph();
+	int xSpace;
+	int ySpace;
+	int xCount;
+	int yCount;
+
+	
+
+	
 
 	float spacing = 20;
 	bool SearchDFS(GraphNode* a_pStart, GraphNode* a_pEnd);
