@@ -25,11 +25,12 @@
 int astConstant = 40;
 float deltaTime = 0;
 float timeSinceLastFrame = 0;
-
-
-
 float currentTime = glfwGetTime();
 float lastFrame = currentTime;
+float x = 0;
+float y = 0;
+
+
 
 
 
@@ -49,7 +50,7 @@ int main()
 		return -1;
 	}
 	myGlobals.window = glfwCreateWindow(600, 600, "Hello World", NULL, NULL);
-	myGlobals.orthographicProjection = myGlobals.getOrtho(0, 600, 0, 600, 0, 100);
+	myGlobals.orthographicProjection = myGlobals.getOrtho(0, 600, 600, 0, 0, 100);
 	if (!myGlobals.window)
 	{
 		glfwTerminate();
@@ -78,16 +79,17 @@ int main()
 	Quad square("square.png");
 	
 	Graph myGraph;
-
-	
+	int squares = 12;
+	Quad testQuad("square.png");
 
 	
 
 	Text myText;
-	myGraph.SetGraphData(180, 180, 15, 15);
+	myGraph.SetGraphData(25, 25, squares, squares, 600 / squares);
 	myGraph.CreateGraph();
-	
-	myGraph.SearchDFS(myGraph.m_aNodes[1], myGraph.m_aNodes[1]);
+	HWND tempWin;
+	glScalef(1.f, -1.f, 1.f);
+	//myGraph.SearchDFS(myGraph.m_aNodes[1], myGraph.m_aNodes[1]);
 	while (!glfwWindowShouldClose(myGlobals.window))
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -100,14 +102,52 @@ int main()
 		lastFrame = currentTime;
 		//square.Draw(300,300, 50,50);
 		myGraph.DrawGraph();
+		//testQuad.Draw(300, 300, 50, 50);
+
+		// TODO: use fucking glfw - love terh glfwGetKey() == GLFW_PRESS
+		if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
+		{
+			std::cout << "you clicked" << std::endl;
+			POINT p;
+			double xPos;
+			double yPos;
+
+			glfwGetCursorPos(myGlobals.window, &xPos, &yPos);
+			
+			GraphNode * clickedNode = myGraph.FindLeastDist(xPos, yPos);
+
+			if (clickedNode != nullptr)
+			{
+
+				std::cout << "i derped on " << clickedNode->id << "\n";
+
+			}
+
+			if (GetCursorPos(&p))
+			{
+				
+				std::cout << xPos << "   " << yPos << std::endl;
+
+			}
+
+			
+		}
+
+		if ((GetKeyState(VK_RBUTTON) & 0x100) != 0)
+		{
+			std::cout << "ZZZZZZZZ" << std::endl;
+		}
+
 		
+		
+
 		//test.Draw(300, 300, 200, 200, 12, deltaTime);
 		//myShip.Move();
 		//myShip.Draw();
 		
 
-		//myText.Draw(0.f, 0.f, std::string("Ayy lmao"));
-
+		//myText.Draw(20.f,20.f, std::string("The Quick Brown Fox Jumps Over A Lazy Dog"));
+		
 
 		//	animatedSprite.Draw();
 		//animatedSprite.Move();

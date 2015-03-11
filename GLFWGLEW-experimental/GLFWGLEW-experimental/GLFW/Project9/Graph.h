@@ -25,20 +25,21 @@ public:
 	void AddNode(GraphNode* a_pNode);
 	void RemoveNode(GraphNode* node);
 	void ResetVisited();
-
-	void SetGraphData(int xSpace, int ySpace, int xCount, int yCount);
-	Graph CreateGraph();
+	GraphNode * FindLeastDist(float mouseX, float mouseY);
+	void SetGraphData(float xStart, float yStart, int xCount, int yCount, float spacing);
+	void CreateGraph();
+	Quad * tile;
 	void DrawGraph();
-	int xSpace;
-	int ySpace;
-	int xCount;
-	int yCount;
-
+	float xStart = 0;
+	float yStart = 0;
+	int xCount = 0;
+	int yCount = 0;
+	float leastDist=0;
 	
 
 	
 
-	float spacing = 20;
+	float spacing = 0;
 	bool SearchDFS(GraphNode* a_pStart, GraphNode* a_pEnd);
 	bool SearchBFS(GraphNode* a_pStart, GraphNode* a_pEnd);
 

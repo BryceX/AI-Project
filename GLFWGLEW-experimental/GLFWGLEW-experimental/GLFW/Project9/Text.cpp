@@ -143,21 +143,21 @@ void Text::Draw(float xPos, float yPos, char theLetter)
 	text[5].fUVs[0] = letter.startX / 256; // upper left corner
 	text[5].fUVs[1] = letter.endY / 256;
 
-	
-	text[0].fPositions[0] = xPos + letter.width/2;
+	//xpos of top right corner
+	text[0].fPositions[0] = xPos + letter.width / 2; 
 	//y position of the top right corner
-	text[0].fPositions[1] = yPos+letter.height/2;
+	text[0].fPositions[1] = yPos + letter.height / 2 * (-1);
 	//x position of the left corner 
 	text[1].fPositions[0] = xPos-letter.width/2;
 	//y position of the left corner
-	text[1].fPositions[1] = yPos-letter.height/2;
-	//x position of the right corner
-	text[2].fPositions[0] = xPos+letter.width/2;
-	//y pos right corner
-	text[2].fPositions[1] = yPos-letter.height/2;
+	text[1].fPositions[1] = yPos - letter.height / 2 * (-1);
+	
+	
 
 	
 	//sets other half of triangle according to the first position
+	text[2].fPositions[0] = text[0].fPositions[0];//x position of the right corner
+	text[2].fPositions[1] = text[1].fPositions[1];  //y pos right corner
 	text[3].fPositions[0] = text[0].fPositions[0];
 	text[3].fPositions[1] = text[0].fPositions[1];
 	text[4].fPositions[0] = text[1].fPositions[0];
@@ -242,7 +242,7 @@ void Text::Draw(float xPos, float yPos, std::string sentence)
 {
 	for (int i = 0; i < sentence.length(); i++)
 	{
-		Draw(xPos, yPos - (characterMap[sentence[i]].yOffset)*.5 , sentence[i]);
+		Draw(xPos, yPos + (characterMap[sentence[i]].yOffset)*.5 , sentence[i]);
 		if (i < sentence.length())
 		{
 			xPos += (characterMap[sentence[i]].width/2);
