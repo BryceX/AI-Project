@@ -79,15 +79,17 @@ int main()
 	Quad square("square.png");
 	
 	Graph myGraph;
-	int squares = 12;
+	int squares = 4;
+	myGraph.SetGraphData(600 / (squares * 2), 600 / (squares * 2), squares, squares, 600 / squares);
+	myGraph.CreateGraph();
 	Quad testQuad("square.png");
 
 	
 
-	Text myText;
-	myGraph.SetGraphData(25, 25, squares, squares, 600 / squares);
-	myGraph.CreateGraph();
+	
+	
 	HWND tempWin;
+	Text myText;
 	glScalef(1.f, -1.f, 1.f);
 	//myGraph.SearchDFS(myGraph.m_aNodes[1], myGraph.m_aNodes[1]);
 	while (!glfwWindowShouldClose(myGlobals.window))
@@ -105,7 +107,7 @@ int main()
 		//testQuad.Draw(300, 300, 50, 50);
 
 		// TODO: use fucking glfw - love terh glfwGetKey() == GLFW_PRESS
-		if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
+	/*	if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
 		{
 			std::cout << "you clicked" << std::endl;
 			POINT p;
@@ -119,7 +121,7 @@ int main()
 			if (clickedNode != nullptr)
 			{
 
-				std::cout << "i derped on " << clickedNode->id << "\n";
+				std::cout << ".. " << clickedNode->id << "\n";
 
 			}
 
@@ -138,7 +140,7 @@ int main()
 			std::cout << "ZZZZZZZZ" << std::endl;
 		}
 
-		
+		*/
 		
 
 		//test.Draw(300, 300, 200, 200, 12, deltaTime);
