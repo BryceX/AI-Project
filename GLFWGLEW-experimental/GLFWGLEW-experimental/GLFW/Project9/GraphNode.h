@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <list>
 class GraphNode;
 struct Edge
 {
@@ -8,6 +9,7 @@ struct Edge
 	~Edge() {}
 	Edge(GraphNode* start, GraphNode* end, float cost)
 	{
+
 		m_pStart = start;
 		m_pEnd = end;
 		m_fCost = cost;
@@ -24,6 +26,7 @@ struct Edge
 
 class GraphNode
 {
+	
 
 public:
 	GraphNode(int a_iNum);
@@ -37,8 +40,14 @@ public:
 	float x = 0;
 	float y = 0;
 	int	id;
+	GraphNode* N;
+	float gScore;
+	float fScore;
 	typedef std::vector<Edge> EdgeList;
 	EdgeList  m_aEdges;
+
+	
+	
 
 
 	GraphNode();

@@ -42,22 +42,23 @@ void GraphNode::SetNode(int id, float x, float y)
 
 
 //questionable if necessary at all
-/*bool GraphNode::CheckIfNeighbor(GraphNode* nodeB)
+bool GraphNode::CheckIfNeighbor(GraphNode* nodeB)
 {
 if (this->m_aEdges[0].m_pEnd == nodeB->m_aEdges[1].m_pStart &&
 this->m_aEdges[0].m_pStart == nodeB->m_aEdges[1].m_pEnd||
 this->m_aEdges[1].m_pEnd == nodeB->m_aEdges[0].m_pStart &&
-this->m_aEdges[1].m_pStart == nodeB->m_aEdges[0].m_pEnd||
+this->m_aEdges[1].m_pStart == nodeB->m_aEdges[0].m_pEnd
+/*||
 this->m_aEdges[0].m_pEnd == nodeB->m_aEdges[0].m_pStart &&
 this->m_aEdges[0].m_pStart == nodeB->m_aEdges[0].m_pEnd ||
 this->m_aEdges[1].m_pEnd == nodeB->m_aEdges[1].m_pStart &&
-this->m_aEdges[1].m_pStart == nodeB->m_aEdges[1].m_pEnd
+this->m_aEdges[1].m_pStart == nodeB->m_aEdges[1].m_pEnd*/
 )
 {
 return true;
 }
 else return false;
-}*/
+}
 
 
 GraphNode::~GraphNode()

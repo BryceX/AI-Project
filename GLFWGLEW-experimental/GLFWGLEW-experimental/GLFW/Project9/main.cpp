@@ -19,6 +19,8 @@
 #define _GRAPH_H_
 #include "Graph.h"
 #include "Quad.h"
+
+#define GLFW_RELEASE 0
 #endif // !_GRAPH_H_
 
 
@@ -29,7 +31,7 @@ float currentTime = glfwGetTime();
 float lastFrame = currentTime;
 float x = 0;
 float y = 0;
-
+float windowSize = 600;
 
 
 
@@ -49,8 +51,8 @@ int main()
 	{
 		return -1;
 	}
-	myGlobals.window = glfwCreateWindow(600, 600, "Hello World", NULL, NULL);
-	myGlobals.orthographicProjection = myGlobals.getOrtho(0, 600, 600, 0, 0, 100);
+	myGlobals.window = glfwCreateWindow(windowSize, windowSize, "Hello World", NULL, NULL);
+	myGlobals.orthographicProjection = myGlobals.getOrtho(0, windowSize, windowSize, 0, 0, 100);
 	if (!myGlobals.window)
 	{
 		glfwTerminate();
@@ -79,9 +81,11 @@ int main()
 	Quad square("square.png");
 	
 	Graph myGraph;
-	int squares = 4;
-	myGraph.SetGraphData(600 / (squares * 2), 600 / (squares * 2), squares, squares, 600 / squares);
+	int squares = 3;
+	myGraph.SetGraphData(windowSize / (squares * 2), windowSize / (squares * 2), squares, squares, windowSize / squares);
 	myGraph.CreateGraph();
+	
+	
 	Quad testQuad("square.png");
 
 	
@@ -102,14 +106,33 @@ int main()
 		currentTime = glfwGetTime();
 		deltaTime = currentTime - lastFrame;
 		lastFrame = currentTime;
-		//square.Draw(300,300, 50,50);
+
 		myGraph.DrawGraph();
-		//testQuad.Draw(300, 300, 50, 50);
+		
+		//dijkstra
+		//todo pushback all neighbors of each node into a container
+		//figure out how to make container accessable by everything
+		//make a new container for every node
+		//make blocks change color for path by changing rgb values
+		//have the lowest weight edge ending node become the new node
+		//check all neighbors of new node and repeat until at goal node and repeat previous step
+	
+	
+
+
+
+
+
+
+
+
+
+	
 
 		// TODO: use fucking glfw - love terh glfwGetKey() == GLFW_PRESS
-	/*	if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
+	if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
 		{
-			std::cout << "you clicked" << std::endl;
+			
 			POINT p;
 			double xPos;
 			double yPos;
@@ -117,21 +140,23 @@ int main()
 			glfwGetCursorPos(myGlobals.window, &xPos, &yPos);
 			
 			GraphNode * clickedNode = myGraph.FindLeastDist(xPos, yPos);
-
-			if (clickedNode != nullptr)
-			{
-
-				std::cout << ".. " << clickedNode->id << "\n";
-
-			}
-
-			if (GetCursorPos(&p))
+			if (0 < xPos && xPos < windowSize && 0 < yPos && yPos < windowSize)
 			{
 				
-				std::cout << xPos << "   " << yPos << std::endl;
+				if (clickedNode != nullptr)
+				{
+					std::cout << "You clicked" << std::endl;
+					std::cout << "Node  " << clickedNode->id << "\n";
 
+				}
+
+				if (GetCursorPos(&p))
+				{
+
+					std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
+
+				}
 			}
-
 			
 		}
 
@@ -140,7 +165,7 @@ int main()
 			std::cout << "ZZZZZZZZ" << std::endl;
 		}
 
-		*/
+		
 		
 
 		//test.Draw(300, 300, 200, 200, 12, deltaTime);

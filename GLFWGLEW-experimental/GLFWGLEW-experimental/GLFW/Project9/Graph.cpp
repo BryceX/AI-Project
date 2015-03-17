@@ -135,8 +135,10 @@ void Graph::SetGraphData(float xStart, float yStart, int xCount, int yCount, flo
 	this->spacing = spacing;
 }
 
+
 void Graph::CreateGraph()
 {
+	std::list<Edge> neighbors;
 	// creating the graph
 	for (int i = 0, id = 0; i < xCount; i++)
 	{
@@ -156,13 +158,25 @@ void Graph::CreateGraph()
 	}
 
 
+
+
+
+
+
 	// adding neighbors
 	for (int k = 0, currentID = 0; k < xCount; k++)
 	{
 		for (int l = 0; l < yCount; l++)
 		{
-			GraphNode * currentNode = m_aNodes[currentID];
 
+
+
+
+
+
+
+			GraphNode * currentNode = m_aNodes[currentID];
+			
 
 			//std::cout << "Working on: " << currentNode->id << "\n";
 
@@ -171,7 +185,7 @@ void Graph::CreateGraph()
 			{
 				Edge temp(currentNode, m_aNodes[currentID + yCount], 1);
 				currentNode->m_aEdges.push_back(temp);
-				m_aNodes[currentID + yCount]->m_aEdges.push_back(temp);
+				//m_aNodes[currentID + yCount]->m_aEdges.push_back(temp);
 			}
 
 			// down
@@ -179,7 +193,7 @@ void Graph::CreateGraph()
 			{
 				Edge temp(currentNode, m_aNodes[currentID - yCount], 1);
 				currentNode->m_aEdges.push_back(temp);
-				m_aNodes[currentID - yCount]->m_aEdges.push_back(temp);
+				//m_aNodes[currentID - yCount]->m_aEdges.push_back(temp);
 			}
 
 			//left
@@ -188,7 +202,7 @@ void Graph::CreateGraph()
 			{
 				Edge temp(currentNode, m_aNodes[currentID - 1], 1);
 				currentNode->m_aEdges.push_back(temp);
-				m_aNodes[currentID - 1]->m_aEdges.push_back(temp);
+				//m_aNodes[currentID - 1]->m_aEdges.push_back(temp);
 			}
 
 			//right
@@ -197,7 +211,7 @@ void Graph::CreateGraph()
 			{
 				Edge temp(currentNode, m_aNodes[currentID + 1], 1);
 				currentNode->m_aEdges.push_back(temp);
-				m_aNodes[currentID + 1]->m_aEdges.push_back(temp);
+				//m_aNodes[currentID + 1]->m_aEdges.push_back(temp);
 			}
 
 
@@ -210,16 +224,34 @@ void Graph::CreateGraph()
 
 	}
 	
-	// creating the graph
+
 	for (int i = 0, id = 0; i < xCount; i++)
 	{
 		for (int j = 0; j < yCount; j++)
 		{
 			m_aNodes[id]->PrintNeighbors();
 			id++;
+
+			
+		
 		}
 	}
+
+
+	
 }
+
+bool Graph::NodeCompare(const Edge* left, const Edge* right)
+{
+	return (left->m_fCost < right->m_fCost);
+}
+/*
+void Graph::AStar(GraphNode * goal)
+{
+	GraphNode temp;
+	
+	temp.m_aEdges[1];
+}*/
 
 void Graph::DrawGraph()
 {
@@ -276,6 +308,50 @@ float distance(float leftX, float leftY, float rightX, float rightY)
 	return sqrt(pow(leftX - rightX, 2) + pow(leftY-rightY , 2));
 }
 
+
+void Graph::aStar(GraphNode* start, GraphNode * goal)
+{
+	std::list<GraphNode*> nodeQueue;
+	for (int i = 0; i < m_aNodes.size(); i++)
+	{
+		m_aNodes[i]->N = NULL;
+		m_aNodes[i]->gScore = INFINITY;
+		m_aNodes[i]->fScore = INFINITY;
+	}
+
+	nodeQueue.push_back(start);
+	start->N = NULL;
+	start->gScore = 0;
+	start->fScore = 0;
+	while (!nodeQueue.empty())
+	{
+		GraphNode* current = nodeQueue.front();
+		nodeQueue.pop_front();
+		current->Visited = true;
+		if (current == goal)
+		{
+			return;
+		}
+		//iterate through every edge
+		for (int j = 0; j < current->m_aEdges.size; j++)
+		{
+
+			if (current->m_aEdges[j].m_pEnd->Visited == false)
+			{
+
+				//
+				nodeQueue.push_front(current->m_aEdges[j].m_pEnd);
+				//add the cost of the gscore to the edge just crossed
+				current->m_aEdges[j].m_pEnd->gScore = (current->gScore + current->m_aEdges[j].m_fCost);
+
+				
+			}
+		}
+	}
+	
+
+	
+}
 GraphNode * Graph::FindLeastDist(float mouseX, float mouseY)
 {
 	int shortestDistance = INT_MAX;
