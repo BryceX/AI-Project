@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <list>
+
 class GraphNode;
 struct Edge
 {

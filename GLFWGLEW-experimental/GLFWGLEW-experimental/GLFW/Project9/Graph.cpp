@@ -140,33 +140,36 @@ void Graph::CreateGraph(int screenSize)
 {
 	std::list<Edge> neighbors;
 	// creating the graph
+	float xNum = xCount;
+	float yNum = yCount;
+
+	// iterate over tiles
 	for (int i = 0, id = 0; i < xCount; i++)
 	{
+
+		// x
+		for (int k = 0; k < 1; k++)
+		{
+			// y
 		for (int j = 0; j < yCount; j++)
 		{
 			GraphNode * temp = new GraphNode();
-			temp->x = 1235;
-			//temp->x += xStart;
-			if (temp->x > screenSize)
-			{
-				temp->y += yStart;
-				temp->x = 0;
-			}
-			
-			temp->id = id;
-			
+			temp->x = 0;
+			temp->y = 0;
+			temp->x += ((j*2+1)*(spacing/2));
+			temp->y += (i*2+1)*(spacing/2);
 
-			
+			temp->id = id;
+
+
+
 			id++;
 
 			AddNode(temp);
 		}
+		}
+			
 	}
-
-
-
-
-
 
 
 	// adding neighbors
@@ -174,12 +177,6 @@ void Graph::CreateGraph(int screenSize)
 	{
 		for (int l = 0; l < yCount; l++)
 		{
-
-
-
-
-
-
 
 			GraphNode * currentNode = m_aNodes[currentID];
 			
@@ -255,18 +252,16 @@ bool Graph::NodeCompare(const Edge* left, const Edge* right)
 
 void Graph::DrawGraph()
 {
-	
+	//todo use values from creategraph
 	
 	int yRows = 0;
 	int xColumns = 0;
-	int xPos = m_aNodes[0]->x + xStart;
-	int yPos = m_aNodes[0]->y + yStart;
+	int xPos = spacing/2;// +xStart;
+	int yPos = spacing/2;// +yStart;
 	float width = spacing;
 	float height = spacing;
-	int id = 0;
-	int id2 = 0;
-	m_aNodes[0]->x = 0;
-	m_aNodes[0]->y = 0;
+	//m_aNodes[0]->x = 0;
+	//m_aNodes[0]->y = 0;
 	for (int k = 0; k < yCount; k++)
 	{
 		for (int l = 0;  l < xCount; l++)
@@ -282,17 +277,11 @@ void Graph::DrawGraph()
 			{
 				yRows += 1;
 				xColumns = 0;
-				xPos = xStart;
+				xPos = spacing/2;
 				yPos += spacing;
 				
 			}
 
-			
-			
-
-			
-
-			
 		}
 		
 	}

@@ -32,7 +32,7 @@ float lastFrame = currentTime;
 float x = 0;
 float y = 0;
 float windowSize = 600;
-int squares = 3;
+int squares = 5;
 int graphCounter = squares;
 
 
@@ -89,7 +89,7 @@ int main()
 	
 	Graph myGraph;
 	
-	myGraph.SetGraphData(windowSize / (squares * 2), windowSize / (squares * 2), squares, squares, windowSize / squares);
+	myGraph.SetGraphData(0, 0, squares, squares, windowSize / squares);
 	myGraph.CreateGraph(windowSize);
 	
 	
@@ -178,14 +178,14 @@ int main()
 					if (GetCursorPos(&p))
 					{
 
-						std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
+					//	std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
 
 					}
 				}
 				
 			
-			std::cout << "You clicked" << std::endl;
-			std::cout << "Node  " << clickedNode->id << "\n";
+			//std::cout << "You clicked" << std::endl;
+			//std::cout << "Node  " << clickedNode->id << "\n";
 
 		}
 		if ((GetKeyState(VK_RBUTTON) & 0x100) != 0)
