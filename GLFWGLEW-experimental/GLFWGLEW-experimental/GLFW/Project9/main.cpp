@@ -32,8 +32,8 @@ float lastFrame = currentTime;
 float x = 0;
 float y = 0;
 float windowSize = 600;
-
-
+int squares = 3;
+int graphCounter = squares;
 
 
 void GetDeltaTime()
@@ -42,6 +42,13 @@ void GetDeltaTime()
 	glfwSetTime(0);
 }
 
+struct Binding
+{
+	float upper = windowSize / (squares * 2);
+	float lower = 0;
+	float left = 0;
+	float right = windowSize / (squares * 2);
+};
 int main()
 {
 	Globals& myGlobals = Globals::instance();
@@ -78,16 +85,23 @@ int main()
 	
 	Asteroids myAsteroids[10];
 	Animator test("mario.png"); 
-	Quad square("square.png");
+	Quad square("square.png",1,1,1);
 	
 	Graph myGraph;
-	int squares = 3;
+	
 	myGraph.SetGraphData(windowSize / (squares * 2), windowSize / (squares * 2), squares, squares, windowSize / squares);
-	myGraph.CreateGraph();
+	myGraph.CreateGraph(windowSize);
 	
 	
-	Quad testQuad("square.png");
+	Quad player("square.png", 1,1,0);
+	/*float xPos = ;
+	float yPos = windowSize/squares*2;*/
+	
+	
+	Binding myBox;
+	
 
+	std::vector<Binding> myBoxes;
 	
 
 	
@@ -106,9 +120,12 @@ int main()
 		currentTime = glfwGetTime();
 		deltaTime = currentTime - lastFrame;
 		lastFrame = currentTime;
-
-		myGraph.DrawGraph();
 		
+		myGraph.DrawGraph();
+		player.Draw(15, 15, 30, 30);
+
+
+
 		//dijkstra
 		//todo pushback all neighbors of each node into a container
 		//figure out how to make container accessable by everything
@@ -120,7 +137,7 @@ int main()
 	
 
 
-
+		
 
 
 
@@ -138,28 +155,39 @@ int main()
 			double yPos;
 
 			glfwGetCursorPos(myGlobals.window, &xPos, &yPos);
-			
-			GraphNode * clickedNode = myGraph.FindLeastDist(xPos, yPos);
-			if (0 < xPos && xPos < windowSize && 0 < yPos && yPos < windowSize)
-			{
+		
+
+				GraphNode * clickedNode = myGraph.FindLeastDist(xPos, yPos);
+				graphCounter += 1;
+
+				if (0 < xPos && xPos < windowSize && 0 < yPos && yPos < windowSize)
+				{
+
+					if (clickedNode != nullptr)
+					{
+						int nodeX = windowSize / squares;
+						
+					
+						
+
+
+						
+
+					}
+
+					if (GetCursorPos(&p))
+					{
+
+						std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
+
+					}
+				}
 				
-				if (clickedNode != nullptr)
-				{
-					std::cout << "You clicked" << std::endl;
-					std::cout << "Node  " << clickedNode->id << "\n";
-
-				}
-
-				if (GetCursorPos(&p))
-				{
-
-					std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
-
-				}
-			}
 			
-		}
+			std::cout << "You clicked" << std::endl;
+			std::cout << "Node  " << clickedNode->id << "\n";
 
+		}
 		if ((GetKeyState(VK_RBUTTON) & 0x100) != 0)
 		{
 			std::cout << "ZZZZZZZZ" << std::endl;

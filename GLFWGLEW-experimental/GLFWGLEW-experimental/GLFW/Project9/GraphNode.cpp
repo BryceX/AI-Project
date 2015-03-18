@@ -25,9 +25,17 @@ void GraphNode::PrintNeighbors()
 
 		std::cout << "Node  [";
 		std::cout << this->id;
-		std::cout << "]  has neighbor/s:  [";
+		std::cout << "] at  X";
+		std::cout << this->x;
+		std::cout << " Y";
+		std::cout << this->y;
+		std::cout << "  has neighbor/s:  [";
 		std::cout << m_aEdges[i].m_pEnd->id;
-		std::cout << "]" << std::endl;
+		std::cout << "] X";
+		std::cout<<m_aEdges[i].m_pEnd->x;
+		std::cout << "  Y";
+		std::cout<<m_aEdges[i].m_pEnd->y<<std::endl;
+
 
 	}
 }

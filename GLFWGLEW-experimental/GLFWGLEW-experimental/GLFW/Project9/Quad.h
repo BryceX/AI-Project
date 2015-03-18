@@ -17,7 +17,7 @@ public:
 	GLuint  uiProgramTextured;
 	GLuint  uiTextureId;
 	Quad();
-	Quad(const char * texturePath);
+	Quad(const char * texturePath, float r, float g, float b);
 	~Quad();
 
 };

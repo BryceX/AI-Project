@@ -13,6 +13,9 @@ class Graph
 
 	typedef std::vector<GraphNode*> NodeList;
 	
+
+
+	
 	
 public:
 	//Creates an empty graph
@@ -28,7 +31,7 @@ public:
 	void ResetVisited();
 	GraphNode * FindLeastDist(float mouseX, float mouseY);
 	void SetGraphData(float xStart, float yStart, int xCount, int yCount, float spacing);
-	void CreateGraph();
+	void CreateGraph(int screenSize);
 	
 	Quad * tile;
 	void DrawGraph();
@@ -46,16 +49,17 @@ public:
 	}
 
 	void aStar(GraphNode * start , GraphNode * goal);
-	
+	void Dijkstra(GraphNode*start,GraphNode*goal);
 
 	float spacing = 0;
-	bool NodeCompare(const Edge* left, const Edge* right);
+	static bool NodeCompare(const Edge* left, const Edge* right);
 	bool SearchDFS(GraphNode* a_pStart, GraphNode* a_pEnd);
 	bool SearchBFS(GraphNode* a_pStart, GraphNode* a_pEnd);
 
 
 	//private:
 	NodeList	m_aNodes;
+	
 	
 
 

@@ -6,7 +6,7 @@
 
 
 
-Quad::Quad(const char * texturePath)
+Quad::Quad(const char * texturePath, float r, float g, float b)
 {
 	Globals& myGlobals = Globals::instance();
 
@@ -35,9 +35,9 @@ Quad::Quad(const char * texturePath)
 	{
 		sprite[i].fPositions[2] = 0.0f;
 		sprite[i].fPositions[3] = 1.0f;
-		sprite[i].fColours[0] = 1.0f;
-		sprite[i].fColours[1] = 1.0f;
-		sprite[i].fColours[2] = 1.0f;
+		sprite[i].fColours[0] = r;
+		sprite[i].fColours[1] = g;
+		sprite[i].fColours[2] = b;
 		sprite[i].fColours[3] = 1.0f;
 	}
 	//set up the UVs
@@ -72,9 +72,6 @@ Quad::Quad(const char * texturePath)
 void Quad::Draw(float x, float y, float width, float height)
 {
 	Globals& myGlobals = Globals::instance();
-
-
-
 	sprite[0].fPositions[1] = y + height / 2;// top position
 	sprite[3].fPositions[1] = sprite[0].fPositions[1];
 	sprite[5].fPositions[1] = sprite[0].fPositions[1];

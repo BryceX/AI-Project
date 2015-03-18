@@ -1,7 +1,7 @@
 #include "Graph.h"
 Graph::Graph()
 {
-	tile = new Quad("square.png");
+	tile = new Quad("square.png",1,1,1);
 }
 void Graph::AddNode(GraphNode* a_pNode)
 {
@@ -136,7 +136,7 @@ void Graph::SetGraphData(float xStart, float yStart, int xCount, int yCount, flo
 }
 
 
-void Graph::CreateGraph()
+void Graph::CreateGraph(int screenSize)
 {
 	std::list<Edge> neighbors;
 	// creating the graph
@@ -145,8 +145,14 @@ void Graph::CreateGraph()
 		for (int j = 0; j < yCount; j++)
 		{
 			GraphNode * temp = new GraphNode();
-			temp->x = xStart;
-			temp->y = yStart;
+			temp->x = 1235;
+			//temp->x += xStart;
+			if (temp->x > screenSize)
+			{
+				temp->y += yStart;
+				temp->x = 0;
+			}
+			
 			temp->id = id;
 			
 
@@ -245,13 +251,7 @@ bool Graph::NodeCompare(const Edge* left, const Edge* right)
 {
 	return (left->m_fCost < right->m_fCost);
 }
-/*
-void Graph::AStar(GraphNode * goal)
-{
-	GraphNode temp;
-	
-	temp.m_aEdges[1];
-}*/
+
 
 void Graph::DrawGraph()
 {
@@ -261,8 +261,8 @@ void Graph::DrawGraph()
 	int xColumns = 0;
 	int xPos = m_aNodes[0]->x + xStart;
 	int yPos = m_aNodes[0]->y + yStart;
-	int width = spacing;
-	int height = spacing;
+	float width = spacing;
+	float height = spacing;
 	int id = 0;
 	int id2 = 0;
 	m_aNodes[0]->x = 0;
@@ -272,7 +272,7 @@ void Graph::DrawGraph()
 		for (int l = 0;  l < xCount; l++)
 		{
 			
-				
+			
 
 				tile->Draw(xPos, yPos, width, height);
 				xPos += spacing;
@@ -308,7 +308,7 @@ float distance(float leftX, float leftY, float rightX, float rightY)
 	return sqrt(pow(leftX - rightX, 2) + pow(leftY-rightY , 2));
 }
 
-
+/*
 void Graph::aStar(GraphNode* start, GraphNode * goal)
 {
 	std::list<GraphNode*> nodeQueue;
@@ -318,7 +318,7 @@ void Graph::aStar(GraphNode* start, GraphNode * goal)
 		m_aNodes[i]->gScore = INFINITY;
 		m_aNodes[i]->fScore = INFINITY;
 	}
-
+	nodeQueue.sort(NodeCompare);
 	nodeQueue.push_back(start);
 	start->N = NULL;
 	start->gScore = 0;
@@ -333,7 +333,50 @@ void Graph::aStar(GraphNode* start, GraphNode * goal)
 			return;
 		}
 		//iterate through every edge
-		for (int j = 0; j < current->m_aEdges.size; j++)
+		for (int j = 0; j < current->m_aEdges.size(); j++)
+		{
+
+			if (current->m_aEdges[j].m_pEnd->Visited == false)
+			{
+
+				//
+				nodeQueue.push_front(current->m_aEdges[j].m_pEnd);
+				//add the cost of the gscore to the edge just crossed
+				current->m_aEdges[j].m_pEnd->gScore = (current->gScore + current->m_aEdges[j].m_fCost);
+				
+				
+			}
+		}
+	}
+	
+
+	
+}*/
+void Graph::Dijkstra(GraphNode* start, GraphNode * goal)
+{
+	std::list<GraphNode*> nodeQueue;
+	for (int i = 0; i < m_aNodes.size(); i++)
+	{
+		m_aNodes[i]->N = NULL;
+		m_aNodes[i]->gScore = INFINITY;
+		m_aNodes[i]->fScore = INFINITY;
+	}
+	
+	nodeQueue.push_back(start);
+	start->N = NULL;
+	start->gScore = 0;
+	start->fScore = 0;
+	while (!nodeQueue.empty())
+	{
+		GraphNode* current = nodeQueue.front();
+		nodeQueue.pop_front();
+		current->Visited = true;
+		if (current == goal)
+		{
+			return;
+		}
+		//iterate through every edge
+		for (int j = 0; j < current->m_aEdges.size(); j++)
 		{
 
 			if (current->m_aEdges[j].m_pEnd->Visited == false)
@@ -344,13 +387,10 @@ void Graph::aStar(GraphNode* start, GraphNode * goal)
 				//add the cost of the gscore to the edge just crossed
 				current->m_aEdges[j].m_pEnd->gScore = (current->gScore + current->m_aEdges[j].m_fCost);
 
-				
+
 			}
 		}
 	}
-	
-
-	
 }
 GraphNode * Graph::FindLeastDist(float mouseX, float mouseY)
 {
@@ -360,15 +400,22 @@ GraphNode * Graph::FindLeastDist(float mouseX, float mouseY)
 	// loop over all the nodes
 	for (int i = 0; i < m_aNodes.size(); i++)
 	{
+		// calculating the distance between the node and the cursor
 		float nodeDistance = distance(m_aNodes[i]->x, m_aNodes[i]->y, mouseX, mouseY);
+		
+		// checks to see if this distance is shorter than the current shortest distance
 		if (nodeDistance < shortestDistance)
 		{
 			shortestDistance = nodeDistance;
 			closestNode = m_aNodes[i];
 		}
+
 	}
 
 	return closestNode;
+
+
+
 }
 
 
