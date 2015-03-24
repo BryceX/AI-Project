@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 #include <list>
+#include "Quad.h"
+
 
 class GraphNode;
 struct Edge
@@ -42,6 +44,7 @@ public:
 	float y = 0;
 	int	id;
 	GraphNode* N;
+	Quad * entity;
 	float gScore;
 	float fScore;
 	typedef std::vector<Edge> EdgeList;

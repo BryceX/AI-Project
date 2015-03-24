@@ -72,6 +72,8 @@ Quad::Quad(const char * texturePath, float r, float g, float b)
 void Quad::Draw(float x, float y, float width, float height)
 {
 	Globals& myGlobals = Globals::instance();
+	this->x = x;
+	this->y = y;
 	sprite[0].fPositions[1] = y + height / 2;// top position
 	sprite[3].fPositions[1] = sprite[0].fPositions[1];
 	sprite[5].fPositions[1] = sprite[0].fPositions[1];

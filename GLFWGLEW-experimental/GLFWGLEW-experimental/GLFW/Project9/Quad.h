@@ -11,6 +11,8 @@ class Quad
 public:
 	void Move();
 	void Draw(float x, float y, float width, float height);
+	float x;
+	float y;
 	Vertex* sprite;
 	GLuint uiVBOQuad;
 	GLuint uiIBOQuad;

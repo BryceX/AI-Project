@@ -260,8 +260,7 @@ void Graph::DrawGraph()
 	int yPos = spacing/2;// +yStart;
 	float width = spacing;
 	float height = spacing;
-	//m_aNodes[0]->x = 0;
-	//m_aNodes[0]->y = 0;
+	
 	for (int k = 0; k < yCount; k++)
 	{
 		for (int l = 0;  l < xCount; l++)
@@ -279,11 +278,8 @@ void Graph::DrawGraph()
 				xColumns = 0;
 				xPos = spacing/2;
 				yPos += spacing;
-				
 			}
-
 		}
-		
 	}
 	
 	//std::cout << tempGraph.m_aNodes.size();
@@ -337,9 +333,6 @@ void Graph::aStar(GraphNode* start, GraphNode * goal)
 			}
 		}
 	}
-	
-
-	
 }*/
 void Graph::Dijkstra(GraphNode* start, GraphNode * goal)
 {
@@ -375,8 +368,6 @@ void Graph::Dijkstra(GraphNode* start, GraphNode * goal)
 				nodeQueue.push_front(current->m_aEdges[j].m_pEnd);
 				//add the cost of the gscore to the edge just crossed
 				current->m_aEdges[j].m_pEnd->gScore = (current->gScore + current->m_aEdges[j].m_fCost);
-
-
 			}
 		}
 	}
@@ -406,8 +397,16 @@ GraphNode * Graph::FindLeastDist(float mouseX, float mouseY)
 
 
 }
+void Graph::GraphMoveTest(float moveValue, float deltaTime)
+{
+	tile->x += moveValue*deltaTime;
 
-
+}
+glm::vec2 Graph::Seek(Quad target)
+{
+	glm::vec2 test = glm::normalize(glm::vec2(target.x, target.y) - glm::vec2(this->m_aNodes[0]->x, this->m_aNodes[0]->y));
+	return test;
+}
 
 Graph::~Graph()
 {

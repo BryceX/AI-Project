@@ -19,6 +19,7 @@
 #define _GRAPH_H_
 #include "Graph.h"
 #include "Quad.h"
+#include <glm/glm.hpp>
 
 #define GLFW_RELEASE 0
 #endif // !_GRAPH_H_
@@ -26,20 +27,22 @@
 
 int astConstant = 40;
 float deltaTime = 0;
-float timeSinceLastFrame = 0;
 float currentTime = glfwGetTime();
 float lastFrame = currentTime;
 float x = 0;
 float y = 0;
 float windowSize = 600;
-int squares = 5;
+int squares = 10;
+float squareSize = 30;
 int graphCounter = squares;
+
 
 
 void GetDeltaTime()
 {
-	deltaTime + glfwGetTime();
+	deltaTime = glfwGetTime();
 	glfwSetTime(0);
+	
 }
 
 struct Binding
@@ -79,21 +82,30 @@ int main()
 		return -1;
 	}
 	//Initialise GLFW
-	Player myShip("sample.jpg");
+	//Player myShip("sample.jpg");
 	Stars myStars[50];
 	
 	
-	Asteroids myAsteroids[10];
-	Animator test("mario.png"); 
-	Quad square("square.png",1,1,1);
+	//Asteroids myAsteroids[10];
+	//Animator test("mario.png"); 
+	//Quad square("square.png",1,1,1);
 	
 	Graph myGraph;
-	
+
 	myGraph.SetGraphData(0, 0, squares, squares, windowSize / squares);
 	myGraph.CreateGraph(windowSize);
 	
 	
 	Quad player("square.png", 1,1,0);
+	float playerXPos = squareSize / 2;
+	float playerYPos = squareSize / 2;
+
+
+	Quad target("square.png", 1, 0, 1);
+	float targetX = 0;
+	float targetY = 0;
+
+
 	/*float xPos = ;
 	float yPos = windowSize/squares*2;*/
 	
@@ -109,6 +121,9 @@ int main()
 	HWND tempWin;
 	Text myText;
 	glScalef(1.f, -1.f, 1.f);
+
+	playerXPos = myGraph.m_aNodes[0]->x;
+	playerYPos = myGraph.m_aNodes[0]->y;
 	//myGraph.SearchDFS(myGraph.m_aNodes[1], myGraph.m_aNodes[1]);
 	while (!glfwWindowShouldClose(myGlobals.window))
 	{
@@ -117,14 +132,18 @@ int main()
 		GetDeltaTime();
 
 		
-		currentTime = glfwGetTime();
-		deltaTime = currentTime - lastFrame;
-		lastFrame = currentTime;
+		//currentTime = glfwGetTime();
+		//deltaTime = currentTime - lastFrame;
+		//lastFrame = currentTime;
+		
 		
 		myGraph.DrawGraph();
-		player.Draw(15, 15, 30, 30);
-
-
+		player.Draw(playerXPos, playerYPos, squareSize, squareSize);
+		target.Draw(targetX, targetY, squareSize, squareSize);
+		//myGraph.GraphMoveTest(20, deltaTime);
+		
+		
+		std::cout << playerXPos << std::endl;
 
 		//dijkstra
 		//todo pushback all neighbors of each node into a container
@@ -141,6 +160,23 @@ int main()
 
 
 
+		
+
+
+
+
+
+
+
+
+		POINT p;
+		double xPos;
+		double yPos;
+
+		glfwGetCursorPos(myGlobals.window, &xPos, &yPos);
+
+
+		GraphNode * clickedNode = myGraph.FindLeastDist(xPos, yPos);
 
 
 
@@ -150,14 +186,7 @@ int main()
 	if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
 		{
 			
-			POINT p;
-			double xPos;
-			double yPos;
-
-			glfwGetCursorPos(myGlobals.window, &xPos, &yPos);
-		
-
-				GraphNode * clickedNode = myGraph.FindLeastDist(xPos, yPos);
+			
 				graphCounter += 1;
 
 				if (0 < xPos && xPos < windowSize && 0 < yPos && yPos < windowSize)
@@ -178,19 +207,27 @@ int main()
 					if (GetCursorPos(&p))
 					{
 
-					//	std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
+						std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
 
 					}
 				}
 				
 			
-			//std::cout << "You clicked" << std::endl;
-			//std::cout << "Node  " << clickedNode->id << "\n";
+			std::cout << "You clicked" << std::endl;
+			std::cout << "Node  " << clickedNode->id << "\n";
+			playerXPos = clickedNode->x;
+			playerYPos = clickedNode->y;
 
 		}
+
 		if ((GetKeyState(VK_RBUTTON) & 0x100) != 0)
 		{
-			std::cout << "ZZZZZZZZ" << std::endl;
+			//std::cout << "ZZZZZZZZ" << std::endl;
+
+			targetX = clickedNode->x;
+			targetY = clickedNode->y;
+
+
 		}
 
 		
@@ -234,7 +271,7 @@ int main()
 		{
 			break;
 		}
-
+		currentTime = 0;
 
 		//poll for and process events
 		glfwPollEvents();
