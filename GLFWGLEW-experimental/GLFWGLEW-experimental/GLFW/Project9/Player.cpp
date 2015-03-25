@@ -50,9 +50,18 @@ Player::Player(const char * texturePath)
 	uiTextureId = myGlobals.loadTexture(texturePath, width, height, bpp);
 }
 
-void Player::Draw()
+void Player::Draw(float x, float y, float width, float height)
 {
 	Globals& myGlobals = Globals::instance();
+	this->x = x;
+	this->y = y;
+
+	playerShip[0].fPositions[0] = x;
+	playerShip[0].fPositions[1] = y + height/2;
+	playerShip[1].fPositions[0] = x - width/2;
+	playerShip[1].fPositions[1] = y - height/2;
+	playerShip[2].fPositions[0] = x + width/2;
+	playerShip[2].fPositions[1] = y - height / 2;
 
 	// specify the shader program to be used for rendering
 	glUseProgram(uiProgramTextured);

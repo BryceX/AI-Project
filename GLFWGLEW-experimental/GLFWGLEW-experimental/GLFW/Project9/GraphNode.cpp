@@ -1,7 +1,7 @@
 #include "GraphNode.h"
 GraphNode::GraphNode()
 {
-
+	entity = new Quad("square.png", 1, 1, 0);
 
 }
 
@@ -39,6 +39,7 @@ void GraphNode::PrintNeighbors()
 
 	}
 }
+
 void GraphNode::SetNode(int id, float x, float y)
 {
 	this->id = id;
@@ -46,7 +47,10 @@ void GraphNode::SetNode(int id, float x, float y)
 	this->y = y;
 
 }
-
+void GraphNode::DrawEntity(float x, float y, float width, float height)
+{
+	entity->Draw( x,  y,  width,  height);
+}
 
 
 //questionable if necessary at all

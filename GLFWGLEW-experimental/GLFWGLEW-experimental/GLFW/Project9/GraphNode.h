@@ -37,16 +37,15 @@ public:
 	bool CheckIfNeighbor(GraphNode* nodeB);
 	bool Visited = false;
 	void IsNeighbor();
-	
-
+	void DrawEntity(float x, float y, float width, float height);
 	void SetNode(int id, float x, float y);
 	float x = 0;
 	float y = 0;
 	int	id;
 	GraphNode* N;
 	Quad * entity;
-	float gScore;
-	float fScore;
+	float gScore =0;
+	float fScore=0;
 	typedef std::vector<Edge> EdgeList;
 	EdgeList  m_aEdges;
 

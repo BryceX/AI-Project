@@ -148,7 +148,7 @@ void Graph::CreateGraph(int screenSize)
 	{
 
 		// x
-		for (int k = 0; k < 1; k++)
+		//for (int k = 0; k < 1; k++)
 		{
 			// y
 		for (int j = 0; j < yCount; j++)
@@ -158,7 +158,6 @@ void Graph::CreateGraph(int screenSize)
 			temp->y = 0;
 			temp->x += ((j*2+1)*(spacing/2));
 			temp->y += (i*2+1)*(spacing/2);
-
 			temp->id = id;
 
 
@@ -192,15 +191,17 @@ void Graph::CreateGraph(int screenSize)
 			}
 
 			// down
-			if (currentID - yCount > 0)
+			if (0 <= (currentID - yCount))
 			{
 				Edge temp(currentNode, m_aNodes[currentID - yCount], 1);
 				currentNode->m_aEdges.push_back(temp);
 				//m_aNodes[currentID - yCount]->m_aEdges.push_back(temp);
 			}
 
+			
+
 			//left
-			if (currentID - 1 >= 0 &&	// not below 0
+			if (currentID >= 0 &&	// not below 0
 				currentID % xCount != 0)	// not a multiple of the xNum
 			{
 				Edge temp(currentNode, m_aNodes[currentID - 1], 1);
@@ -244,9 +245,12 @@ void Graph::CreateGraph(int screenSize)
 	
 }
 
-bool Graph::NodeCompare(const Edge* left, const Edge* right)
+bool Graph::NodeCompare(const GraphNode* left, const GraphNode* right)
 {
-	return (left->m_fCost < right->m_fCost);
+	
+	
+		return (left->gScore < right->gScore );
+	
 }
 
 
@@ -293,8 +297,20 @@ float distance(float leftX, float leftY, float rightX, float rightY)
 	return sqrt(pow(leftX - rightX, 2) + pow(leftY-rightY , 2));
 }
 
-/*
-void Graph::aStar(GraphNode* start, GraphNode * goal)
+
+float GetHeuristic(const GraphNode* start, const GraphNode* goal)
+{
+	//return (glm::vec2(start->x, start->y) - glm::vec2(goal->x, goal->y));//GetMagnitude();
+}
+
+bool AStarNodeCompare(const GraphNode* left, const GraphNode* right)
+{
+	float leftF = left->gScore + GetHeuristic(left, right);
+	float rightF = right->gScore + GetHeuristic(right, left);
+	return (leftF < rightF);
+}
+
+bool Graph::aStar(GraphNode* start, GraphNode * goal)
 {
 	std::list<GraphNode*> nodeQueue;
 	for (int i = 0; i < m_aNodes.size(); i++)
@@ -308,6 +324,7 @@ void Graph::aStar(GraphNode* start, GraphNode * goal)
 	start->N = NULL;
 	start->gScore = 0;
 	start->fScore = 0;
+
 	while (!nodeQueue.empty())
 	{
 		GraphNode* current = nodeQueue.front();
@@ -315,7 +332,7 @@ void Graph::aStar(GraphNode* start, GraphNode * goal)
 		current->Visited = true;
 		if (current == goal)
 		{
-			return;
+			return true;
 		}
 		//iterate through every edge
 		for (int j = 0; j < current->m_aEdges.size(); j++)
@@ -333,8 +350,8 @@ void Graph::aStar(GraphNode* start, GraphNode * goal)
 			}
 		}
 	}
-}*/
-void Graph::Dijkstra(GraphNode* start, GraphNode * goal)
+}
+bool Graph::Dijkstra(GraphNode* start, GraphNode * goal)
 {
 	std::list<GraphNode*> nodeQueue;
 	for (int i = 0; i < m_aNodes.size(); i++)
@@ -348,28 +365,48 @@ void Graph::Dijkstra(GraphNode* start, GraphNode * goal)
 	start->N = NULL;
 	start->gScore = 0;
 	start->fScore = 0;
+
 	while (!nodeQueue.empty())
 	{
 		GraphNode* current = nodeQueue.front();
+		
 		nodeQueue.pop_front();
+		//nodeQueue.sort(NodeCompare);
+
+		
+		//bool isLeast = true;
+		//if (isLeast)
+		
+	
+		if (current->Visited == true)
+		{
+			continue;
+		}
+
 		current->Visited = true;
+		std::cout << current->id << std::endl;
 		if (current == goal)
 		{
-			return;
+			std::cout << "goal reached" << std::endl;
+			return true;
 		}
-		//iterate through every edge
+		
+		//looping over each edge to see if we havebeen there
 		for (int j = 0; j < current->m_aEdges.size(); j++)
 		{
-
+			// have we visited the end of that node?
 			if (current->m_aEdges[j].m_pEnd->Visited == false)
 			{
 
-				//
-				nodeQueue.push_front(current->m_aEdges[j].m_pEnd);
-				//add the cost of the gscore to the edge just crossed
+				// add it to the front of the queue
+				nodeQueue.push_back(current->m_aEdges[j].m_pEnd);
+				//calculate the cost of the gscore to the edge just crossed
 				current->m_aEdges[j].m_pEnd->gScore = (current->gScore + current->m_aEdges[j].m_fCost);
+				
+				
 			}
 		}
+
 	}
 }
 GraphNode * Graph::FindLeastDist(float mouseX, float mouseY)

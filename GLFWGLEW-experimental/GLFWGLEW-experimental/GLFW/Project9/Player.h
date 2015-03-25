@@ -8,7 +8,9 @@ class Player
 {
 public:
 	void Move();
-	void Draw();
+	void Draw(float x, float y, float width, float height);
+	float x;
+	float y;
 	Vertex* playerShip;
 	GLuint uiVBOplayerShip;
 	GLuint uiIBOplayerShip;

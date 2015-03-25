@@ -49,11 +49,12 @@ public:
 		current = s;
 	}
 	void GraphMoveTest(float moveValue, float deltaTime);
-	void aStar(GraphNode * start , GraphNode * goal);
-	void Dijkstra(GraphNode*start,GraphNode*goal);
-
+	bool aStar(GraphNode * start , GraphNode * goal);
+	bool Dijkstra(GraphNode*start,GraphNode*goal);
+	static bool AStarNodeCompare(const GraphNode* start, const GraphNode* goal);
 	float spacing = 0;
-	static bool NodeCompare(const Edge* left, const Edge* right);
+	float GetHeuristic(const GraphNode* start, const GraphNode* goal);
+	static bool NodeCompare(const GraphNode* left, const GraphNode* right);
 	bool SearchDFS(GraphNode* a_pStart, GraphNode* a_pEnd);
 	bool SearchBFS(GraphNode* a_pStart, GraphNode* a_pEnd);
 	glm::vec2 Seek(Quad target);
