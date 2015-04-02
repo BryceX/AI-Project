@@ -300,7 +300,8 @@ float distance(float leftX, float leftY, float rightX, float rightY)
 
 float GetHeuristic(const GraphNode* start, const GraphNode* goal)
 {
-	//return (glm::vec2(start->x, start->y) - glm::vec2(goal->x, goal->y));//GetMagnitude();
+	return 0;
+		//(glm::vec2(start->x, start->y) - glm::vec2(goal->x, goal->y));//GetMagnitude();
 }
 
 bool AStarNodeCompare(const GraphNode* left, const GraphNode* right)
@@ -406,7 +407,8 @@ bool Graph::Dijkstra(GraphNode* start, GraphNode * goal)
 				
 			}
 		}
-
+		std::cout << nodeQueue.front();
+		//need to get it to output the node number instead of address
 	}
 }
 GraphNode * Graph::FindLeastDist(float mouseX, float mouseY)

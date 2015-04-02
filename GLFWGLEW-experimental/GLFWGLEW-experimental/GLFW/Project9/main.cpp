@@ -276,7 +276,7 @@ float lastFrame = currentTime;
 float x = 0;
 float y = 0;
 float windowSize = 600;
-int squares = 4;
+int squares = 10;
 float squareSize = 30;
 int graphCounter = squares;
 
@@ -380,7 +380,7 @@ int main()
 	Player player1("square.png");
 
 
-	myGraph.Dijkstra(myGraph.m_aNodes[0], myGraph.m_aNodes[15]);
+	//myGraph.Dijkstra(myGraph.m_aNodes[0], myGraph.m_aNodes[15]);
 
 
 
@@ -439,11 +439,11 @@ int main()
 
 
 		GraphNode * clickedNode = myGraph.FindLeastDist(xPos, yPos);
-
+		GraphNode * clickedNode2 = myGraph.FindLeastDist(xPos, yPos);
 
 
 	
-	/*if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
+	if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
 		{
 			
 			
@@ -467,27 +467,33 @@ int main()
 					if (GetCursorPos(&p))
 					{
 
-						std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
+						//std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
 
 					}
 				}
 				
 			
-			std::cout << "You clicked" << std::endl;
-			std::cout << "Node  " << clickedNode->id << "\n";
+			//std::cout << "You clicked" << std::endl;
+			//std::cout << "Node  " << clickedNode->id << "\n";
 			playerXPos = clickedNode->x;
 			playerYPos = clickedNode->y;
+			//myGraph.Dijkstra(myGraph.m_aNodes[clickedNode->id], myGraph.m_aNodes[15]);
 
-		}*/
+		}
 
 		if ((GetKeyState(VK_RBUTTON) & 0x100) != 0)
 		{
 			//std::cout << "ZZZZZZZZ" << std::endl;
 
-			targetX = clickedNode->x;
-			targetY = clickedNode->y;
+			//targetX = clickedNode->x;
+			//targetY = clickedNode->y;
+			myGraph.Dijkstra(clickedNode, myGraph.m_aNodes[77]);
+			
 
-
+		}
+		if (GetKeyState(32))
+		{
+		
 		}
 		
 		
