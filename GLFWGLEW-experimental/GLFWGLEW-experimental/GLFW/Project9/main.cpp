@@ -20,6 +20,7 @@
 #include "Graph.h"
 #include "Quad.h"
 #include <glm/glm.hpp>
+#include <glm\ext.hpp>
 #define 	GLFW_KEY_UNKNOWN   -1
 
 #define 	GLFW_KEY_SPACE   32
@@ -381,11 +382,74 @@ int main()
 
 
 	//myGraph.Dijkstra(myGraph.m_aNodes[0], myGraph.m_aNodes[15]);
+	
+	class Tank
+	{
+		glm::mat3 transform;
+		float x;
+		float y;
+		void Update()
+		
+		{
+
+		};
+
+	};
+
+	class AITank : Tank
+	{
+		glm::vec2 velocity();
+		float maxVelocity;
+		void Update()
+		{
+
+		};
+
+	};
+	class SteeringBehaviour
+	{
+		AITank myTank;
+
+		void getForce()
+		{
+
+		};
+
+	};
+
+	void trunc(glm::vec2& vector, float max)
+	{
+
+	}
+
+	class Seek :SteeringBehaviour
+	{
+		AITank myTarget;
+		float speedCap = 10;
+		glm::vec2 velocity;
+		void getForce(glm::vec2 target)
+		{
+			glm::vec2 position = position + velocity;
+			velocity = glm::normalize(target - position) * speedCap;
+
+
+			glm::vec2 desired_velocity = glm::normalize(target - position) * speedCap;
+			glm::vec2 steering = glm::trunc(steering, speedCap);
+			steering = steering / mass;
+			velocity = truncate(velocity + steering, speedCap);
+		
+		};
+
+	};
+		
+		
+	
 
 
 
 	while (!glfwWindowShouldClose(myGlobals.window))
 	{
+
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		GetDeltaTime();
@@ -447,36 +511,7 @@ int main()
 		{
 			
 			
-				graphCounter += 1;
-
-				if (0 < xPos && xPos < windowSize && 0 < yPos && yPos < windowSize)
-				{
-
-					if (clickedNode != nullptr)
-					{
-						int nodeX = windowSize / squares;
-						
-					
-						
-
-
-						
-
-					}
-
-					if (GetCursorPos(&p))
-					{
-
-						//std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
-
-					}
-				}
 				
-			
-			//std::cout << "You clicked" << std::endl;
-			//std::cout << "Node  " << clickedNode->id << "\n";
-			playerXPos = clickedNode->x;
-			playerYPos = clickedNode->y;
 			//myGraph.Dijkstra(myGraph.m_aNodes[clickedNode->id], myGraph.m_aNodes[15]);
 
 		}
@@ -492,6 +527,38 @@ int main()
 			myGraph.m_aNodes[10]->gScore = 10;
 			myGraph.m_aNodes[15]->gScore = 10;
 			myGraph.m_aNodes[11]->gScore = 10;
+
+
+			graphCounter += 1;
+
+			if (0 < xPos && xPos < windowSize && 0 < yPos && yPos < windowSize)
+			{
+
+				if (clickedNode != nullptr)
+				{
+					int nodeX = windowSize / squares;
+
+
+
+
+
+
+
+				}
+
+				if (GetCursorPos(&p))
+				{
+
+					//std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
+
+				}
+			}
+
+
+			//std::cout << "You clicked" << std::endl;
+			//std::cout << "Node  " << clickedNode->id << "\n";
+			playerXPos = clickedNode->x;
+			playerYPos = clickedNode->y;
 
 			//myGraph.Dijkstra(clickedNode, myGraph.m_aNodes[24]);
 			myGraph.aStar(clickedNode, myGraph.m_aNodes[24], 1);

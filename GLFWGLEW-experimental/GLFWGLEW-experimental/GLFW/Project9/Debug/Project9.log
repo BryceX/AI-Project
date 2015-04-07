@@ -1,71 +1,30 @@
-﻿Build started 4/6/2015 5:47:15 PM.
+﻿Build started 4/7/2015 11:19:02 AM.
      1>Project "C:\Users\bryson.au\Documents\GitHub\AI-Project\GLFWGLEW-experimental\GLFWGLEW-experimental\GLFW\Project9\Project9.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(381,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (4th Assessment Game Engine.vcxproj, glfwglewtut.vcxproj, Project9.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Graph.cpp main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
      1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\globals.h(35): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\globals.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\globals.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.h(47): warning C4101: 'Open' : unreferenced local variable
      1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.h(48): warning C4101: 'Closed' : unreferenced local variable
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(274): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(287): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(302): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(308): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(340): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(441): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(442): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(457): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(371): warning C4101: 'tempWin' : unreferenced local variable
-         Graph.cpp
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\globals.h(35): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\globals.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\globals.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.h(47): warning C4101: 'Open' : unreferenced local variable
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.h(48): warning C4101: 'Closed' : unreferenced local variable
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(14): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(17): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(31): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(76): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(119): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(143): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(144): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(186): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(263): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(264): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(275): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(276): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(283): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(284): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(318): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(365): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(388): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(420): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(447): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(455): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-         Generating Code...
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(321): warning C4756: overflow in constant arithmetic
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(322): warning C4756: overflow in constant arithmetic
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(391): warning C4756: overflow in constant arithmetic
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(392): warning C4756: overflow in constant arithmetic
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(384): warning C4715: 'Graph::aStar' : not all control paths return a value
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(321): warning C4756: overflow in constant arithmetic
-     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\graph.cpp(440): warning C4715: 'Graph::Dijkstra' : not all control paths return a value
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\bryson.au\Documents\GitHub\AI-Project\GLFWGLEW-experimental\GLFWGLEW-experimental\GLFW\Debug\5th Assessment Pathfinding.exe" /INCREMENTAL /NOLOGO tinyxml2.lib glew32.lib opengl32.lib SOIL.lib glfw3.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\bryson.au\Documents\GitHub\AI-Project\GLFWGLEW-experimental\GLFWGLEW-experimental\GLFW\Debug\5th Assessment Pathfinding.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\bryson.au\Documents\GitHub\AI-Project\GLFWGLEW-experimental\GLFWGLEW-experimental\GLFW\Debug\5th Assessment Pathfinding.lib" /MACHINE:X86 Debug\Animator.obj
-         Debug\Asteroids.obj
-         Debug\Globals.obj
-         Debug\Graph.obj
-         Debug\GraphNode.obj
-         Debug\main.obj
-         Debug\Player.obj
-         Debug\Quad.obj
-         Debug\Stars.obj
-         Debug\Text.obj
-         Project9.vcxproj -> C:\Users\bryson.au\Documents\GitHub\AI-Project\GLFWGLEW-experimental\GLFWGLEW-experimental\GLFW\Debug\5th Assessment Pathfinding.exe
-     1>Done Building Project "C:\Users\bryson.au\Documents\GitHub\AI-Project\GLFWGLEW-experimental\GLFWGLEW-experimental\GLFW\Project9\Project9.vcxproj" (Build target(s)).
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\glm\glm\gtx\scalar_multiplication.hpp(85): error C2719: 'rh': formal parameter with __declspec(align('16')) won't be aligned
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\glm\glm\gtx\scalar_multiplication.hpp(85): error C2719: 'lh': formal parameter with __declspec(align('16')) won't be aligned
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(275): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(288): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(303): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(309): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(341): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(401): warning C4822: 'main::AITank::velocity' : local class member function does not have a body
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(499): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(500): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(533): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(431): error C2661: 'glm::trunc' : no overloaded function takes 2 arguments
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(432): error C2065: 'mass' : undeclared identifier
+     1>c:\users\bryson.au\documents\github\ai-project\glfwglew-experimental\glfwglew-experimental\glfw\project9\main.cpp(433): error C3861: 'truncate': identifier not found
+     1>Done Building Project "C:\Users\bryson.au\Documents\GitHub\AI-Project\GLFWGLEW-experimental\GLFWGLEW-experimental\GLFW\Project9\Project9.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:02.26
+Time Elapsed 00:00:01.25

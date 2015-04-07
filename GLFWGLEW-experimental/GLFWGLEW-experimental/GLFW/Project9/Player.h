@@ -16,6 +16,10 @@ public:
 	GLuint uiIBOplayerShip;
 	GLuint  uiProgramTextured;
 	GLuint  uiTextureId;
+
+
+	
+
 	Player();
 	Player(const char * texturePath);
 	~Player();
