@@ -311,42 +311,72 @@ bool AStarNodeCompare(const GraphNode* left, const GraphNode* right)
 	return (leftF < rightF);
 }
 
-bool Graph::aStar(GraphNode* start, GraphNode * goal)
+bool Graph::aStar(GraphNode* start, GraphNode * goal, int heuristic)
 {
 	std::list<GraphNode*> nodeQueue;
+	
 	for (int i = 0; i < m_aNodes.size(); i++)
 	{
-		m_aNodes[i]->N = NULL;
+		m_aNodes[i]->lastNode = NULL;
 		m_aNodes[i]->gScore = INFINITY;
 		m_aNodes[i]->fScore = INFINITY;
 	}
-	nodeQueue.sort(NodeCompare);
+	
 	nodeQueue.push_back(start);
-	start->N = NULL;
+	start->lastNode = NULL;
 	start->gScore = 0;
 	start->fScore = 0;
 
 	while (!nodeQueue.empty())
 	{
 		GraphNode* current = nodeQueue.front();
+		
 		nodeQueue.pop_front();
+		nodeQueue.sort(NodeCompare);
+		if (current->Visited == true)
+		{
+			continue;
+		}
+
 		current->Visited = true;
+
 		if (current == goal)
 		{
+			//iterate through all parent nodes
+			std::vector<GraphNode *> path;
+			path.push_back(goal);	// add the goal
+
+			GraphNode * currentTraceNode = goal;	// start at goal
+
+			while (currentTraceNode != start)
+			{
+				// add another parent to the path
+				path.push_back(currentTraceNode->lastNode);
+
+				currentTraceNode = currentTraceNode->lastNode; // move the parent
+				std::cout << currentTraceNode->id << std::endl;
+			}
+			
+			std::cout << "goal reached" << std::endl;
 			return true;
 		}
+
 		//iterate through every edge
 		for (int j = 0; j < current->m_aEdges.size(); j++)
 		{
-
 			if (current->m_aEdges[j].m_pEnd->Visited == false)
 			{
-
-				//
-				nodeQueue.push_front(current->m_aEdges[j].m_pEnd);
-				//add the cost of the gscore to the edge just crossed
-				current->m_aEdges[j].m_pEnd->gScore = (current->gScore + current->m_aEdges[j].m_fCost);
+				if (current->m_aEdges[j].m_pEnd->lastNode == nullptr)
+				{
+					current->m_aEdges[j].m_pEnd->lastNode = current;
+				}
 				
+				nodeQueue.push_back(current->m_aEdges[j].m_pEnd);
+				//add the cost of the gscore to the edge just crossed
+				
+
+
+				current->m_aEdges[j].m_pEnd->gScore = (current->gScore + current->m_aEdges[j].m_fCost);
 				
 			}
 		}
@@ -357,13 +387,13 @@ bool Graph::Dijkstra(GraphNode* start, GraphNode * goal)
 	std::list<GraphNode*> nodeQueue;
 	for (int i = 0; i < m_aNodes.size(); i++)
 	{
-		m_aNodes[i]->N = NULL;
+		m_aNodes[i]->lastNode = NULL;
 		m_aNodes[i]->gScore = INFINITY;
 		m_aNodes[i]->fScore = INFINITY;
 	}
 	
 	nodeQueue.push_back(start);
-	start->N = NULL;
+	start->lastNode = NULL;
 	start->gScore = 0;
 	start->fScore = 0;
 
@@ -373,19 +403,13 @@ bool Graph::Dijkstra(GraphNode* start, GraphNode * goal)
 		
 		nodeQueue.pop_front();
 		//nodeQueue.sort(NodeCompare);
-
-		
-		//bool isLeast = true;
-		//if (isLeast)
-		
-	
 		if (current->Visited == true)
 		{
 			continue;
 		}
 
 		current->Visited = true;
-		std::cout << current->id << std::endl;
+		//std::cout << current->id << std::endl;
 		if (current == goal)
 		{
 			std::cout << "goal reached" << std::endl;
@@ -400,14 +424,17 @@ bool Graph::Dijkstra(GraphNode* start, GraphNode * goal)
 			{
 
 				// add it to the front of the queue
+				current->m_aEdges[j].m_pEnd->lastNode = current;
+				
 				nodeQueue.push_back(current->m_aEdges[j].m_pEnd);
+				std::cout << current->m_aEdges[j].m_pEnd->lastNode->id << std::endl;
 				//calculate the cost of the gscore to the edge just crossed
 				current->m_aEdges[j].m_pEnd->gScore = (current->gScore + current->m_aEdges[j].m_fCost);
 				
 				
 			}
 		}
-		std::cout << nodeQueue.front();
+		//std::cout << nodeQueue.front()->id;
 		//need to get it to output the node number instead of address
 	}
 }

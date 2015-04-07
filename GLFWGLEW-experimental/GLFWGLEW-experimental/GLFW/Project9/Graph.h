@@ -49,7 +49,7 @@ public:
 		current = s;
 	}
 	void GraphMoveTest(float moveValue, float deltaTime);
-	bool aStar(GraphNode * start , GraphNode * goal);
+	bool aStar(GraphNode * start , GraphNode * goal, int heuristic);
 	bool Dijkstra(GraphNode*start,GraphNode*goal);
 	static bool AStarNodeCompare(const GraphNode* start, const GraphNode* goal);
 	float spacing = 0;

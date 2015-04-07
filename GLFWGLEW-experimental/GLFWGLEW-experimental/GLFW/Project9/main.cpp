@@ -276,7 +276,7 @@ float lastFrame = currentTime;
 float x = 0;
 float y = 0;
 float windowSize = 600;
-int squares = 10;
+int squares = 5;
 float squareSize = 30;
 int graphCounter = squares;
 
@@ -480,17 +480,23 @@ int main()
 			//myGraph.Dijkstra(myGraph.m_aNodes[clickedNode->id], myGraph.m_aNodes[15]);
 
 		}
-
 		if ((GetKeyState(VK_RBUTTON) & 0x100) != 0)
 		{
 			//std::cout << "ZZZZZZZZ" << std::endl;
 
 			//targetX = clickedNode->x;
 			//targetY = clickedNode->y;
-			myGraph.Dijkstra(clickedNode, myGraph.m_aNodes[77]);
-			
+			//myGraph.Dijkstra(clickedNode, myGraph.m_aNodes[24]);
+			myGraph.m_aNodes[1]->gScore = 10;
+			myGraph.m_aNodes[2]->gScore = 10;
+			myGraph.m_aNodes[10]->gScore = 10;
+			myGraph.m_aNodes[15]->gScore = 10;
+			myGraph.m_aNodes[11]->gScore = 10;
 
+			//myGraph.Dijkstra(clickedNode, myGraph.m_aNodes[24]);
+			myGraph.aStar(clickedNode, myGraph.m_aNodes[24], 1);
 		}
+
 		if (GetKeyState(32))
 		{
 		

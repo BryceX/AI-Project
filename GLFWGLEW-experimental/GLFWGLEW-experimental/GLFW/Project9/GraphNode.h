@@ -42,7 +42,7 @@ public:
 	float x = 0;
 	float y = 0;
 	int	id;
-	GraphNode* N;
+	GraphNode* lastNode;
 	Quad * entity;
 	float gScore =0;
 	float fScore=0;
