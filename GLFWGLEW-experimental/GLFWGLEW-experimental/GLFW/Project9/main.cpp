@@ -20,6 +20,7 @@
 #include "Graph.h"
 #include "Quad.h"
 #include <glm/glm.hpp>
+#include "SteeringAgent.h"
 #define 	GLFW_KEY_UNKNOWN   -1
 
 #define 	GLFW_KEY_SPACE   32
@@ -367,7 +368,20 @@ int main()
 	
 
 	
-	
+
+
+	SteeringAgent target("square.png", 1,0.5f,1);
+	target.x = 200;
+	target.y = 200;
+
+	SteeringAgent myAgent("square.png", 1, 0, 1);
+	myAgent.max_velocity = glm::vec2(100, 100);
+	myAgent.x = 600;
+	myAgent.y = 600;
+	myAgent.targetPos = &target;
+
+
+
 	HWND tempWin;
 	Text myText;
 	glScalef(1.f, -1.f, 1.f);
@@ -414,8 +428,12 @@ int main()
 		//have the lowest weight edge ending node become the new node
 		//check all neighbors of new node and repeat until at goal node and repeat previous step
 	
-	
-
+	//	myAgent.seek();
+		//myAgent.flee();
+		myAgent.arrive();
+		myAgent.update(deltaTime);
+		myAgent.Draw(myAgent.x, myAgent.y, 50, 50);
+		target.Draw(target.x, target.y, 50, 50);
 
 		
 
@@ -446,37 +464,9 @@ int main()
 	if ((GetKeyState(VK_LBUTTON) & 0x100) != 0)
 		{
 			
-			
-				graphCounter += 1;
-
-				if (0 < xPos && xPos < windowSize && 0 < yPos && yPos < windowSize)
-				{
-
-					if (clickedNode != nullptr)
-					{
-						int nodeX = windowSize / squares;
-						
-					
-						
-
-
-						
-
-					}
-
-					if (GetCursorPos(&p))
-					{
-
-						//std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
-
-					}
-				}
+		target.x = xPos;
+		target.y = yPos;
 				
-			
-			//std::cout << "You clicked" << std::endl;
-			//std::cout << "Node  " << clickedNode->id << "\n";
-			playerXPos = clickedNode->x;
-			playerYPos = clickedNode->y;
 			//myGraph.Dijkstra(myGraph.m_aNodes[clickedNode->id], myGraph.m_aNodes[15]);
 
 		}
@@ -493,8 +483,42 @@ int main()
 			myGraph.m_aNodes[15]->gScore = 10;
 			myGraph.m_aNodes[11]->gScore = 10;
 
+
+
+			graphCounter += 1;
+
+			if (0 < xPos && xPos < windowSize && 0 < yPos && yPos < windowSize)
+			{
+
+				if (clickedNode != nullptr)
+				{
+					int nodeX = windowSize / squares;
+
+
+
+
+
+
+
+				}
+
+				if (GetCursorPos(&p))
+				{
+
+					//std::cout << "at " << xPos << "X   " << yPos << "Y" << std::endl;
+
+				}
+			}
+
+
+			//std::cout << "You clicked" << std::endl;
+			//std::cout << "Node  " << clickedNode->id << "\n";
+			playerXPos = clickedNode->x;
+			playerYPos = clickedNode->y;
+
 			//myGraph.Dijkstra(clickedNode, myGraph.m_aNodes[24]);
 			myGraph.aStar(clickedNode, myGraph.m_aNodes[24], 1);
+
 		}
 
 		if (GetKeyState(32))

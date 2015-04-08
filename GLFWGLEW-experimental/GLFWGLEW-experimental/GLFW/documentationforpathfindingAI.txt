@@ -1,0 +1,30 @@
+AI:
+
+Seek/Flee
+Arrive
+
+Pathfinding:
+
+A*
+Dijkstra
+
+Graph:
+
+//Set the initial graph by calling the SetGraphData function and input x/y position
+//After setting that, you can 
+
+Seek moves the object towards another object but is restricted by deltatime and the max_velocity float.
+Flee is -Seek.
+
+Arrive is flee until the object gets within a specific radius.
+Both A* and Dijkstra take in all children of the starting node and check to see if it is at the goal node, if it is not, it will search through all children and see if they have children nodes.  It will continue this until it reaches the goal node or there are no children left.
+A* has a heuristic while Dijkstra does not.
+
+Improvements to be made:
+Wander
+Flock
+Path Smoothing
+Avoiding an area
+Make screen wraparound
+
+This could be also be improved by also making the path visible and change color when traversed, as well as being able to reset the path without closing the window.

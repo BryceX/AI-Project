@@ -79,6 +79,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Stars.cpp" />
+    <ClCompile Include="SteeringAgent.cpp" />
     <ClCompile Include="Text.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Stars.h" />
+    <ClInclude Include="SteeringAgent.h" />
     <ClInclude Include="Text.h" />
   </ItemGroup>
   <ItemGroup>

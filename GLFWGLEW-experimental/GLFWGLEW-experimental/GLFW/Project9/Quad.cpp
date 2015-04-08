@@ -3,7 +3,10 @@
 
 
 
+Quad::Quad()
+{
 
+}
 
 
 Quad::Quad(const char * texturePath, float r, float g, float b)
@@ -161,71 +164,7 @@ void Quad::Draw(float x, float y, float width, float height)
 	}
 }
 
-/*void Quad::Move()
 
-{
-	Globals& myGlobals = Globals::instance();
-	if (glfwGetKey(myGlobals.window, GLFW_KEY_W) == GLFW_PRESS)
-	{
-		//move forward
-		for (int i = 0; i < 3; i++)
-		{
-			playerShip[i].fPositions[1] += myGlobals.screenSize*.01f;
-		}
-		glBindBuffer(GL_ARRAY_BUFFER, uiVBOplayerShip);
-		GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-		//copy data to graphics card
-		memcpy(vBuffer, playerShip, sizeof(Vertex)* 6);
-		//unmap and unbind buffer
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-	}
-	if (glfwGetKey(myGlobals.window, GLFW_KEY_S) == GLFW_PRESS)
-	{
-		//move forward
-		for (int i = 0; i < 3; i++)
-		{
-			playerShip[i].fPositions[1] -= myGlobals.screenSize*.01f;
-		}
-		glBindBuffer(GL_ARRAY_BUFFER, uiVBOplayerShip);
-		GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-		//copy data to graphics card
-		memcpy(vBuffer, playerShip, sizeof(Vertex)* 3);
-		//unmap and unbind buffer
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-	}
-	if (glfwGetKey(myGlobals.window, GLFW_KEY_D) == GLFW_PRESS)
-	{
-		//move forward
-		for (int i = 0; i < 3; i++)
-		{
-			playerShip[i].fPositions[0] += myGlobals.screenSize*.01f;
-		}
-		glBindBuffer(GL_ARRAY_BUFFER, uiVBOplayerShip);
-		GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-		//copy data to graphics card
-		memcpy(vBuffer, playerShip, sizeof(Vertex)* 3);
-		//unmap and unbind buffer
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-	}
-	if (glfwGetKey(myGlobals.window, GLFW_KEY_A) == GLFW_PRESS)
-	{
-		//move forward
-		for (int i = 0; i < 3; i++)
-		{
-			playerShip[i].fPositions[0] -= myGlobals.screenSize*.01f;
-		}
-		glBindBuffer(GL_ARRAY_BUFFER, uiVBOplayerShip);
-		GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-		//copy data to graphics card
-		memcpy(vBuffer, playerShip, sizeof(Vertex)* 3);
-		//unmap and unbind buffer
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-	}
-}*/
 
 
 Quad::~Quad()

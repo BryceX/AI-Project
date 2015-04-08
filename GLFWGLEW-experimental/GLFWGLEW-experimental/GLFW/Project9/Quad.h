@@ -18,7 +18,7 @@ public:
 	GLuint uiIBOQuad;
 	GLuint  uiProgramTextured;
 	GLuint  uiTextureId;
-
+	void move();
 	float width, height;
 	Quad();
 	Quad(const char * texturePath, float r, float g, float b);
